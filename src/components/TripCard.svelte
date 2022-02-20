@@ -1,5 +1,5 @@
 <script>
-    import PortableText from '@portabletext/svelte'
+    import { imageUrl } from '../utils'
     export let _id;
     export let title;
     export let body;
@@ -72,7 +72,7 @@
 </style>
 
 <a href={`/${_id}`}>
-    <img src={image} alt="Trip Image" />
+    <img src={imageUrl(image).size(1000, 750).format('webp').url()} alt="Trip" />
     <div class="info">
         <h2>{title}</h2>
         <span>{dateText}</span>
