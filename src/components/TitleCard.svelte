@@ -12,8 +12,7 @@
         font-size: 24px;
         width: 100%;
         text-align: center;
-        margin-bottom: 48px;
-        opacity: 0.7;
+        margin-bottom: 32px;
     }
 </style>
 

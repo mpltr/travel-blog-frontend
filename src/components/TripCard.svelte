@@ -22,30 +22,44 @@
         position: relative;
     }
 
-    /* a:before {
+    /* This isn't working. not important  */
+/* 
+    .fixing {
         display: block;
         position: absolute;
-        content: "";
-        width: 80px;
-        height: 30px;
-        background-image: url("https://media.istockphoto.com/photos/white-texture-watercolor-paper-picture-id621348814?k=20&m=621348814&s=612x612&w=0&h=QzF9acWvKNK6i5coOBMe_M8nMab6Uc-vOuF-grxG2z0=");
-        transform: rotate(45deg);
-        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-        right: -30px;
-        top: -2px;
+        width: 70px; 
+        height: 70px; 
+        overflow: hidden;
+    }
+    
+    .fixing:first-child {
+        right: -5px;
+        top: -5px;
     }
 
-    a:after {
+    .fixing:last-child {
+        transform: rotate(-90deg);
+        left: -5px;
+        top: -5px;
+    } 
+
+    .fixing:nth-child(1) {
+        transform: rotate(-180deg);
+        left: -5px;
+        bottom: -5px;
+    }
+    .fixing::after {
         display: block;
-        position: absolute;
         content: "";
-        width: 80px;
-        height: 30px;
-        background-image: url("https://media.istockphoto.com/photos/white-texture-watercolor-paper-picture-id621348814?k=20&m=621348814&s=612x612&w=0&h=QzF9acWvKNK6i5coOBMe_M8nMab6Uc-vOuF-grxG2z0=");
-        transform: rotate(225deg);
+        background-image: url("https://www.photos-public-domain.com/wp-content/uploads/2011/03/charcoal-gray-parchment-paper-texture.jpg");
+        background-size: 100%;
         box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-        left: -25px;
-        bottom: -0px;
+        width: 100%;
+        height: 100%;
+        transform: rotate(45deg);
+        position: relative;
+        top: -35px;
+        right: -35px;
     } */
 
     h2 {
@@ -78,4 +92,8 @@
         <span>{dateText}</span>
     </div>
     <!-- <PortableText blocks={body} /> -->
+    <div class="fixing"></div>
+    <div class="fixing"></div>
+    <div class="fixing"></div>
+    <div class="fixing"></div>
 </a>

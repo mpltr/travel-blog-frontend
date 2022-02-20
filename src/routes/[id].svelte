@@ -12,8 +12,12 @@
 </script>
 
 <script>
+    import { getContext } from 'svelte';
+    const { open } = getContext('simple-modal');
+
     import TitleCard from '../components/TitleCard.svelte'
     import Heading from '../components/Heading.svelte';
+    import Gallery from '../components/Gallery.svelte'
     import { onMount } from 'svelte';
     import { imageUrl } from '../utils'
 
@@ -40,10 +44,24 @@
         height: 300px;
         text-align: center;
     }
-
+    
     .image > img {
         width: 100%;
         height: auto;
+        /* Overflow on the carousel stops this looking pretty */
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    }
+
+    .card {
+        display: block;
+        background-image: url("https://media.istockphoto.com/photos/white-texture-watercolor-paper-picture-id621348814?k=20&m=621348814&s=612x612&w=0&h=QzF9acWvKNK6i5coOBMe_M8nMab6Uc-vOuF-grxG2z0=");
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+        padding: 16px;
+        margin: 16px 0;
+    }
+
+    p {
+        text-align: justify;
     }
 </style>
 
@@ -51,9 +69,10 @@
 
 {#each sections as section}
     <div bind:clientWidth>
-        <Heading title={section.title} />
-        <p>{section.writeUp}</p>
-       
+        <div class="card">
+            <Heading title={section.title} />
+            <p>{section.writeUp}</p>
+        </div>
         <svelte:component
             this={Carousel}
             bind:this={carousel}
@@ -64,7 +83,7 @@
             swiping={particlesToShow < section.images.length && section.images.length !== 1}
         >
             {#each section.images as image}
-            <div class="image">
+            <div class="image" on:click={() => open(Gallery, {images: section.images, clickedIndex: 0})}>
                 <img class="image" src={imageUrl(image).size(680, 680).format('webp').url()} />
             </div>
             {/each}
