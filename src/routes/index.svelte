@@ -33,15 +33,20 @@
 <style>
     .cards {
         display: grid;
+        grid-template-columns: repeat( auto-fit, minmax(343px, 1fr ) );
         gap: 32px;
         width: 100%;
-        max-width: 500px;
+        justify-items: center;
+
     }
 </style>
+
 <TitleCard title="Team Stubborn Travel Journal" />
-        <div class="cards">
-            {#each posts as post}
-            <TripCard {...post} />
-            {/each}
-        </div>
+<div class="content">
+    <div class="cards">
+        {#each posts as post}
+        <TripCard {...post} />
+        {/each}
+    </div>
+</div>
 
