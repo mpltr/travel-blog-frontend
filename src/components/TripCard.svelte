@@ -15,11 +15,12 @@
         width: 100%;
         max-width: 500px;
         padding: 12px;
-        border-radius: 2px;
-        font-family: 'Oooh Baby', cursive;
+        border-radius: 2px;       
         text-decoration: none;
-        color: black;
+        color: rgb(0, 0, 0);
         position: relative;
+        background-color: white;
+        font-family: 'Oooh Baby', cursive;
     }
 
     /* This isn't working. not important  */
@@ -65,7 +66,7 @@
     h2 {
         font-size: 32px;
         margin: 0;
-        opacity: 0.7;
+       
     }
 
     img {
@@ -80,8 +81,8 @@
         padding: 16px 8px 8px;
     }
     span {
-        margin-left: auto;
-        opacity: 0.7;
+        /* margin-left: auto; */
+       
     }
 </style>
 

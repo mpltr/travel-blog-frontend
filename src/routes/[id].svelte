@@ -32,40 +32,55 @@
     $: clientWidth = 0;
     $: allowArrows = clientWidth > 768
     $: sections = post.sections
-    $: particlesToShow = Math.floor((clientWidth - 60) / 305);
+    $: particlesToShow = Math.floor((clientWidth - 76) / 305);
 </script>
 
 <style>
     .image {
         padding: 8px;
-        width: 300px;
-        min-width: 300px;
-        max-width: 300px;
-        height: 300px;
         text-align: center;
     }
     
     .image > img {
-        width: 100%;
+        background-color: #fff;
+        width: 300px;
+        min-width: 300px;
+        max-width: 300px;
+        height: 300px;
         height: auto;
         /* Overflow on the carousel stops this looking pretty */
         box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     }
-
+    
     .card {
         display: block;
-        background-image: url("https://media.istockphoto.com/photos/white-texture-watercolor-paper-picture-id621348814?k=20&m=621348814&s=612x612&w=0&h=QzF9acWvKNK6i5coOBMe_M8nMab6Uc-vOuF-grxG2z0=");
-        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+        /* background-image: url("https://media.istockphoto.com/photos/white-texture-watercolor-paper-picture-id621348814?k=20&m=621348814&s=612x612&w=0&h=QzF9acWvKNK6i5coOBMe_M8nMab6Uc-vOuF-grxG2z0="); */
+        /* box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px; */
         padding: 16px;
-        margin: 16px 0;
+        margin: 0 0 16px;
+    }
+    
+    p {
+        /* text-align: justify; */
     }
 
-    p {
-        text-align: justify;
+    .carousel {
+        position: relative;
+    }
+
+    button {
+        position: absolute;
+        background-color: transparent;
+        border: 1px solid rgb(109, 109, 109);
+        border-radius: 3px;
+        color: rgb(109, 109, 109);
+        top: 0;
+        right: 0;
+        background-color: #fff;
     }
 </style>
 
-<TitleCard title={post.title} />
+<TitleCard title={post.title} subtitle={post.dateText}/>
 
 {#each sections as section}
     <div bind:clientWidth>
@@ -73,21 +88,24 @@
             <Heading title={section.title} />
             <p>{section.writeUp}</p>
         </div>
-        <svelte:component
-            this={Carousel}
-            bind:this={carousel}
-            particlesToShow={particlesToShow}
-            particlesToScroll={1}
-            arrows={allowArrows && particlesToShow < section.images.length && section.images.length !== 1}
-            dots={particlesToShow < section.images.length && section.images.length !== 1}
-            swiping={particlesToShow < section.images.length && section.images.length !== 1}
-        >
-            {#each section.images as image}
-            <div class="image" on:click={() => open(Gallery, {images: section.images, clickedIndex: 0})}>
-                <img class="image" src={imageUrl(image).size(680, 680).format('webp').url()} />
-            </div>
-            {/each}
-        </svelte:component>
+        <div class="carousel">
+            <svelte:component
+                this={Carousel}
+                bind:this={carousel}
+                particlesToShow={particlesToShow}
+                particlesToScroll={1}
+                arrows={allowArrows && particlesToShow < section.images.length && section.images.length !== 1}
+                dots={particlesToShow < section.images.length && section.images.length !== 1}
+                swiping={particlesToShow < section.images.length && section.images.length !== 1}
+            >
+                {#each section.images as image}
+                <div class="image">
+                    <img class="image" src={imageUrl(image).size(680, 680).format('webp').url()} alt="gallary"/>
+                </div>
+                {/each}
+            </svelte:component>
+            <button on:click={() => open(Gallery, {images: section.images, clickedIndex: 0})}>⤢</button>
+        </div>
     </div>
    
 {/each}
